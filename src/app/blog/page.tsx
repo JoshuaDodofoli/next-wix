@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 import { wixClient } from '@/lib/wixClient';
+import type { BlogPost } from '@/lib/blogPost';
 import { Metadata } from 'next';
 
 export const metadata: Metadata= {
@@ -9,7 +10,7 @@ export const metadata: Metadata= {
 
 const page = async () => {
   const posts = await wixClient.items.query("Exampleposts").ascending("title").find();
-  const blogposts = posts.items;
+  const blogposts = posts.items as BlogPost[];
 
   return (
     <div className=' flex items-center justify-center flex-col h-full w-full px-6'>
@@ -23,8 +24,8 @@ const page = async () => {
       </div>
       <ul className='text-start items-start w-full'>
         <li className='flex flex-col items-start'>
-          {blogposts.map((post: any) => (
-            <div key={post.index} className=''>
+          {blogposts.map((post) => (
+            <div key={post._id} className=''>
               <Link className='text-sm' href={`/blog/${post.slug}`}>
               <span className='text-sm font-extralight pr-2'>&#9828;</span>
               {post.title}</Link>
