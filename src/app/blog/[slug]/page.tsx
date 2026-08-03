@@ -37,7 +37,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     }
 
     return (
-        <div className=" flex items-center justify-center flex-col h-screen">
+        <div className="flex flex-1 flex-col items-center justify-center">
 
             <div className="flex flex-col items-start px-6">
                 <span className='pb-6 font-semibold'><Link href="/blog">&larr; Back</Link></span>

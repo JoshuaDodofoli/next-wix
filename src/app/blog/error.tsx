@@ -14,7 +14,7 @@ export default function BlogError({
   }, [error]);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4 px-6 text-center">
+    <div className="flex flex-1 w-full flex-col items-center justify-center gap-4 px-6 text-center">
       <p>Something went wrong while loading the blog.</p>
       <button
         className="bg-rose-200 px-3 py-1 font-semibold"

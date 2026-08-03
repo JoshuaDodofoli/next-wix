@@ -13,7 +13,7 @@ const page = async () => {
   const blogposts = posts.items as BlogPost[];
 
   return (
-    <div className=' flex items-center justify-center flex-col h-full w-full px-6'>
+    <div className='flex flex-1 w-full flex-col items-center justify-center px-6'>
       <div className="flex flex-col items-start">
         <span className='pb-6 font-semibold'><Link href="/">&larr; Back</Link></span>
         <h1 className='bg-3'>Welcome to the blog page. <br />
@@ -22,16 +22,15 @@ const page = async () => {
 
         <h2 className='pt-6 font-bold'>Silly posts.😛 <em className='text-black/[.2]'>(Try tapping)</em></h2>
       </div>
-      <ul className='text-start items-start w-full'>
-        <li className='flex flex-col items-start'>
-          {blogposts.map((post) => (
-            <div key={post._id} className=''>
-              <Link className='text-sm' href={`/blog/${post.slug}`}>
-              <span className='text-sm font-extralight pr-2'>&#9828;</span>
-              {post.title}</Link>
-            </div>
-          ))}
-        </li>
+      <ul className='w-full text-start'>
+        {blogposts.map((post) => (
+          <li key={post._id} className='flex items-start'>
+            <span className='pr-2 text-sm font-extralight'>&#9828;</span>
+            <Link className='text-sm' href={`/blog/${post.slug}`}>
+              {post.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   )
