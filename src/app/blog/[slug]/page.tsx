@@ -15,7 +15,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     return {
-        title: blogPost.slug,
+        title: blogPost.title,
+        description: blogPost.description,
+        openGraph: {
+            title: blogPost.title,
+            description: blogPost.description,
+            type: 'article',
+            url: `/blog/${blogPost.slug}`,
+        },
     };
 }
 
