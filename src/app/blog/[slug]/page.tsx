@@ -1,14 +1,12 @@
 import React from 'react'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { wixClient } from '@/lib/wixClient';
-import type { BlogPost } from '@/lib/blogPost';
+import { getBlogPost } from '@/lib/blogPost';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const posts = await wixClient.items.query('Exampleposts').eq('slug', slug).find();
-    const blogPost = posts.items[0] as BlogPost | undefined;
+    const blogPost = await getBlogPost(slug);
 
     if (!blogPost) {
         notFound();
@@ -29,8 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     const { slug } = await params;
 
-    const posts = await wixClient.items.query("Exampleposts").eq("slug", slug).find();
-    const blogPost = posts.items[0] as BlogPost | undefined;
+    const blogPost = await getBlogPost(slug);
 
     if (!blogPost) {
         notFound();

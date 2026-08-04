@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from "next/link";
-import { wixClient } from '@/lib/wixClient';
-import type { BlogPost } from '@/lib/blogPost';
+import { getBlogPosts } from '@/lib/blogPost';
 import { Metadata } from 'next';
 
 export const metadata: Metadata= {
@@ -9,8 +8,7 @@ export const metadata: Metadata= {
 }
 
 const page = async () => {
-  const posts = await wixClient.items.query("Exampleposts").ascending("title").find();
-  const blogposts = posts.items as BlogPost[];
+  const blogposts = await getBlogPosts();
 
   return (
     <div className='flex flex-1 w-full flex-col items-center justify-center px-6'>
