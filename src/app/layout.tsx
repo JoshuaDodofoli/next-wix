@@ -23,11 +23,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://next-wix.vercel.app/"),
   keywords: ["blog", "cupcake", "silly", "fun", "salt", "unserious activities"],
+  description: "Unserious activities from Cupcake's blog.",
   title: {
     default: "Cupcake's Blog(salt) 🧁",
     template: "%s | Cupcake's Blog(salt) 🧁",
   },
   openGraph: {
+    title: "Cupcake's Blog(salt)",
     description: "Unserious activities. 😛",
     images: ['/favicon-2.png']
   },
@@ -44,9 +46,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col justify-center  h-screen items-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col items-center justify-center`}
       >
-        <div className="h-2/3 flex flex-col items-start max-w-[40ch]">
+        <div className="flex min-h-screen w-full max-w-[40ch] flex-col items-start py-8">
           <Header />
           {children}
           <Footer />
